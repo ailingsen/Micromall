@@ -61,12 +61,12 @@
 
 <div class="navbar-header pull-right" role="navigation">
 <ul class="nav ace-nav" style="height:45px">
-	<li class="Larger">
-    <a class="dropdown-toggle"  href="http://bbs.baijiacms.com" target="_blank">
-        <i class="icon-globe"></i>
-        <span>官方论坛</span>
-    </a> 
-</li>
+<!--	<li class="Larger">-->
+<!--        <a class="dropdown-toggle"  href="http://bbs.baijiacms.com" target="_blank">-->
+<!--            <i class="icon-globe"></i>-->
+<!--            <span>官方论坛</span>-->
+<!--        </a> -->
+<!--    </li>-->
 <li class="Larger">
     <a class="dropdown-toggle"  href="<?php  echo WEBSITE_ROOT.'index.php';?>" target="_blank">
         <i class="icon-mobile-phone"></i>

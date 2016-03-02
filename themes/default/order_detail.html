@@ -166,31 +166,34 @@ select{padding:0 5px; line-height:28px; -webkit-appearance:button;}
         </div> 
         <!--@php  } @-->
 	<div class="myoder-total" style='margin-bottom:30px;'>
-		<span>共计：<span class="false">
-                     <!--@php  if($item['dispatchprice']<=0) { @-->
-                        <!--@php  echo $item['price'];@--> 元
-                        <!--@php  } else { @-->
-                        <!--@php  echo $item['price'];@--> 元 (含运费 <!--@php  echo $item['dispatchprice'];@--> 元) 
-                        <!--@php  } @-->
-                    </span>
+		<span>共计：
+					<span class="false">
+						 <!--@php  if($item['dispatchprice']<=0) { @-->
+							<!--@php  echo $item['price'];@--> 元
+							<!--@php  } else { @-->
+							<!--@php  echo $item['price'];@--> 元 (含运费 <!--@php  echo $item['dispatchprice'];@--> 元)
+							<!--@php  } @-->
+					</span>
                          <!--@php  if($item['hasbonus']>0) { @-->
-                      <span style="color:green"> ( 已优惠：<!--@php  echo $item['bonusprice'];@--> 元)</span>
-                        <!--@php  }  @--></span>
+					<span style="color:green"> ( 已优惠：<!--@php  echo $item['bonusprice'];@--> 元)</span>
+						<!--@php  }  @-->
+		</span>
 
 		<!--@php  if($item['status'] == 0||($item['paytype'] ==3&&$item['status'] ==1)) { @-->
 		<div class="pull-right">
 		支付方式：
 	<select style="margin-right:15px;width:150px" name="payment"  id="payment" autocomplete="off">
 			<!--@php   foreach($payments as $payment) { @-->
-                <option value="<!--@php  echo $payment['code'];@-->" 	<!--@php  if($payment['code']==$item['paytypecode']) { @-->selected<!--@php  } @-->><!--@php  echo $payment['name'];@--></option>
+                <option value="<!--@php  echo $payment['code'];@-->"> 	<!--@php  if($payment['code']==$item['paytypecode']) { @-->selected<!--@php  } @-->><!--@php  echo $payment['name'];@--></option>
                 	<!--@php  } @-->
               <select>
 		<a href="javascript:;" onclick="topay();" class="btn btn-danger btn-sm">立即支付</a>
 		<script>
 	function topay()
 	{
-location.href ="<!--@php  echo mobile_url('pay', array('orderid' => $item['id']))@-->&paymentcode="+document.getElementById('payment').value;	
-}</script>
+		location.href ="<!--@php  echo mobile_url('pay', array('orderid' => $item['id']))@-->&paymentcode="+document.getElementById('payment').value;
+	}
+</script>
 		</div>
 		<!--@php  } @-->
 		<!--@php  if($item['status'] == 0||($item['paytype'] ==3&&$item['status'] ==1)) { @-->

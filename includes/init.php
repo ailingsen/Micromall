@@ -431,6 +431,7 @@ function message($msg, $redirect = '', $type = '',$successAutoNext=true) {
 		$vars['message'] = $msg;
 		$vars['redirect'] = $redirect;
 		$vars['type'] = $type;
+		echo '1111';exit();
 		exit(json_encode($vars));
 	}
 	if (empty($msg) && !empty($redirect)) {
@@ -552,38 +553,28 @@ function refresh() {
 	return strip_tags($_CMS['refresh']);
 }
 function page($filename) {
-			global $_CMS;
-			if(SYSTEM_ACT=='mobile') {
-				
-			if(CUSTOM_VERSION==true&&is_file(CUSTOM_ROOT.$_CMS['module']."/template/mobile/{$filename}.php"))
-			{
-				$source=CUSTOM_ROOT.$_CMS['module']."/template/mobile/{$filename}.php";
-			}else
-			{
+	global $_CMS;
+	if(SYSTEM_ACT=='mobile') {
+		if(CUSTOM_VERSION==true&&is_file(CUSTOM_ROOT.$_CMS['module']."/template/mobile/{$filename}.php")) {
+			$source=CUSTOM_ROOT.$_CMS['module']."/template/mobile/{$filename}.php";
+		}else {
 			$source=SYSTEM_ROOT . $_CMS['module']."/template/mobile/{$filename}.php";
-			}
-			
-			
-			
-					if (!is_file($source)) {
-					$source=SYSTEM_ROOT ."common/template/mobile/{$filename}.php";
-			
-					}
-		}else
-		{
-				if(CUSTOM_VERSION==true&&is_file(CUSTOM_ROOT.$_CMS['module']."/template/web/{$filename}.php"))
-			{
-					$source=CUSTOM_ROOT . $_CMS['module']."/template/web/{$filename}.php";
-			}else
-			{
-				$source=SYSTEM_ROOT . $_CMS['module']."/template/web/{$filename}.php";
-			}
-					if (!is_file($source)) {
-					$source=SYSTEM_ROOT ."common/template/web/{$filename}.php";
-			
-			}
 		}
-		return $source;
+		if (!is_file($source)){
+			$source=SYSTEM_ROOT ."common/template/mobile/{$filename}.php";
+		}
+	}else {
+		if(CUSTOM_VERSION==true&&is_file(CUSTOM_ROOT.$_CMS['module']."/template/web/{$filename}.php")) {
+			$source=CUSTOM_ROOT . $_CMS['module']."/template/web/{$filename}.php";
+		}else {
+			$source=SYSTEM_ROOT . $_CMS['module']."/template/web/{$filename}.php";
+		}
+
+		if (!is_file($source)) {
+			$source=SYSTEM_ROOT ."common/template/web/{$filename}.php";
+		}
+	}
+	return $source;
 }
 
 
